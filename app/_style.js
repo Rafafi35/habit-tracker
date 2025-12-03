@@ -18,4 +18,14 @@ export default StyleSheet.create({
     text: {
         color: '#fff',
     },
+    button: {
+        backgroundColor: '#3e4147',
+        padding: 10,
+        borderRadius: 5,
+        marginTop: 10,
+    },
+    textInput: {
+        textAlign: 'center',
+        width: '50%',
+    }
 })
