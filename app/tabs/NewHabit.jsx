@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {router} from 'expo-router'
 import {Pressable, StyleSheet, Text, TextInput, View,} from 'react-native';
 import style from '../_style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -16,6 +17,7 @@ export default function NewHabit() {
             await AsyncStorage.setItem('@habits', JSON.stringify(habits));
             setTitle(''); // Input-Feld leeren
             console.log('All Habits', habits);
+            router.push('/tabs'); // Zurück zur Home-Seite navigieren
         } catch (error) {
             console.warn(error);
         }
