@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
-import {Button, Text, View,} from 'react-native';
+import {Button, Pressable, Text, View,} from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import {useFocusEffect} from "expo-router";
 import style from '../_style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -41,7 +42,9 @@ const Home = () => {
         {habits.map(habit => (
             <View style={style.habitContainer} key={habit.id}>
                 <Text style={style.text}>{habit.title}</Text>
-                <Button title={"D"} onPress={() => deleteHabit(habit.id)}/>
+                <Pressable onPress={() => deleteHabit(habit.id)}>
+                    <Ionicons name='trash-outline' size={24} color="red" />
+                </Pressable>
             </View>))}
     </View>
   );
