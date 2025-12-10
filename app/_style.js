@@ -19,6 +19,17 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
     },
+    openHabitContainer: {
+        width: '95%',
+        height: '35%',
+        borderRadius: 8,
+        backgroundColor: '#3e4147',
+        marginBottom: 20,
+        padding: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
     text: {
         color: '#fff',
     },

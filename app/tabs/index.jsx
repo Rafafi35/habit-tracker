@@ -9,6 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Home = () => {
 
     const [habits, setHabits] = useState([]);
+    const [openHabitId, setOpenHabitId] = useState(null);
 
     useFocusEffect(() => {
         readHabits()
@@ -37,15 +38,24 @@ const Home = () => {
         }
     }
 
+    function toggleHabit(habitId) {
+        setOpenHabitId(openHabitId === habitId ? null : habitId);
+    }
+
   return (
     <View style={style.container}>
         {habits.map(habit => (
-            <View style={style.habitContainer} key={habit.id}>
+            <Pressable
+                key={habit.id}
+                onPress={() => toggleHabit(habit.id)}
+                style={openHabitId === habit.id ? style.openHabitContainer : style.habitContainer}
+            >
                 <Text style={style.text}>{habit.title}</Text>
+                <Text style={style.text}>{habit.amount}</Text>
                 <Pressable onPress={() => deleteHabit(habit.id)}>
                     <Ionicons name='trash-outline' size={24} color="red" />
                 </Pressable>
-            </View>))}
+            </Pressable>))}
     </View>
   );
 }

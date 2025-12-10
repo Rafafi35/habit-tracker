@@ -6,13 +6,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function NewHabit() {
     const [title, setTitle] = useState('');
+    const [amount, setAmount] = useState(0);
 
     async function saveHabit() {
         if (!title.trim()) return; // Wenn Title leer ist -> Return
         try {
             const storedHabits = await AsyncStorage.getItem('@habits');
             const habits = storedHabits ? JSON.parse(storedHabits) : [];
-            const newHabit = {id: Date.now(), title: title.trim()}
+            const newHabit = {id: Date.now(), title: title.trim(), amount: amount};
             habits.push(newHabit);
             await AsyncStorage.setItem('@habits', JSON.stringify(habits));
             setTitle(''); // Input-Feld leeren
@@ -29,10 +30,18 @@ export default function NewHabit() {
         <View style={style.container}>
             <Text style={style.text}>New Habit</Text>
             <TextInput
+                type={'text'}
                 style={style.textInput}
                 placeholder="Title"
                 value={title}
                 onChangeText={setTitle}
+            />
+            <TextInput
+                type={'number'}
+                style={style.textInput}
+                placeholder='Amount'
+                value={amount}
+                onChangeText={setAmount}
             />
             <Pressable style={style.button} onPress={saveHabit}>
                 <Text>Create</Text>
